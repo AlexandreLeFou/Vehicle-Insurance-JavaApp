@@ -22,7 +22,7 @@ public class CommandLineInterface{
     MenuF12 menuF12 = new MenuF12();
     MenuF34 menuF34 = new MenuF34();
 
-        Scanner keyboard = new Scanner(System.in);
+    Scanner keyboard = new Scanner(System.in);
 
   do{
       System.out.println("---Select Functionality to perform:\n*1 Vehicle Insurance status\n*2 Forecoming Expiries" +
@@ -30,7 +30,7 @@ public class CommandLineInterface{
         try {choice = keyboard.nextInt();
         } catch (InputMismatchException exception) {
             System.out.println("You have not typed an Integer so the program shall exit..\nRe execute and be careful.");
-            System.exit(0); //terminate execution if user enters wrongly
+            System.exit(0); //terminate execution for wrong user input
         }
         switch (choice) {
             case 1:
@@ -68,16 +68,15 @@ public class CommandLineInterface{
                 readFrom = keyboard.nextInt();
                 System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                 writeTo = keyboard.nextInt();
-                System.out.println("Type the amount of the fine(for non integer values please separate decimal-floating with a DOT" +
-                        " (e.g. 12.2 or 344.532 or etc.)");
-                //try catch >>
+                System.out.println("Type the amount of the fine(for non integer values please separate" +
+                        " decimal-floating with a DOT" +" (e.g. 12.2 or 344.532 or etc.)");
                 try {
                   double fine = keyboard.nextDouble();
                   try {menuF34.fineCalcByOwner(vehiclesInf, vehiclesInfDB,readFrom, writeTo, fine);
                   } catch (Exception e) { e.printStackTrace();  }
                 } catch (InputMismatchException exception) {
                     System.out.println("You have typed something wrongly. \nRe execute and be careful.");
-                    System.exit(0); //terminate execution if user enters wrongly
+                    System.exit(0); //terminate execution for wrong user input
                 }
                 break;
             default:
