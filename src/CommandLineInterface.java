@@ -8,7 +8,7 @@ public class CommandLineInterface{
     public void userPromt(String file, DbConnector myDatabase) {
 
     String licensePlate;
-    int readFrom,writeTo,choice;
+    int readFrom,writeTo,choice=0;
     List<Vehicles> vehiclesInfDB = new LinkedList<Vehicles>();
     List<String[]> dataListEggrafes = CsvParser.read(file);
     List<Vehicles> vehiclesInf = new LinkedList<Vehicles>();
@@ -29,7 +29,7 @@ public class CommandLineInterface{
         try {choice = keyboard.nextInt();
         } catch (InputMismatchException exception) {
             System.out.println("You have not typed an Integer so the program shall exit..\nRe execute and be careful.");
-            return; //if user prompts wrong number the program closes all together
+            System.exit(0); //terminate execution if user enters wrongly
         }
         switch (choice) {
             case 1:
@@ -76,7 +76,7 @@ public class CommandLineInterface{
                   } catch (Exception e) { e.printStackTrace();  }
                 } catch (InputMismatchException exception) {
                     System.out.println("You have typed something wrongly. \nRe execute and be careful.");
-                    return; //if user prompts wrong number the program closes all together
+                    System.exit(0); //terminate execution if user enters wrongly
                 }
                 break;
             default:
