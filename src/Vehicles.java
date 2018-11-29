@@ -10,30 +10,13 @@ public class Vehicles  {
         this.ownerName = ownerName;
         this.plateNumber = plateNumber;
         this.carType = carType;
-        this.finishDayInsu = finishDayInsu;
-    }
+        this.finishDayInsu = finishDayInsu;    }
 
 
-    public String getPlateNumber() {
-        return plateNumber;
-    }
+    public String getPlateNumber() { return plateNumber;  }
 
-    /* public int Compare(Vehicles d, Vehicles d1) {
-         return d.getPlateNumber().compareTo(d1.getPlateNumber());
-     }
- */
-    public String getOwnerName() {
-        return ownerName;
-    }
+    public String getOwnerName()   { return ownerName;    }
 
-    public void setOwnerName(String ownerName) {
-        this.ownerName = ownerName;
-    }
+    public void setOwnerName(String ownerName) { this.ownerName = ownerName;   }
 
-    public String getFinishDayInsu() {
-        return finishDayInsu;
-    }
-
-
-
-}
+    public String getFinishDayInsu() {  return finishDayInsu; } }
