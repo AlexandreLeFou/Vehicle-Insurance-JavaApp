@@ -1,7 +1,5 @@
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Scanner;
-//import java.util.Scanner;
 
 public class DbConnector {
     ArrayList<String> columnFullName = new ArrayList<String>();
@@ -10,51 +8,26 @@ public class DbConnector {
     ArrayList<String>  columnCarModel = new ArrayList<String>();
 
     public void dbcall() throws SQLException {
-        Scanner scanner = new Scanner(System.in); //so as to select insert,update,delete
         Connection myConn = null;
         Statement myStmt = null;
         ResultSet myRs = null;
 
         try {
-            // connect to database- change password/username as per ur pc
+            // connect to database- change password/username as per your pc
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
-
-            //System.out.println("Database connection successful!\n");
-
-            // Create a statement
-            myStmt = myConn.createStatement();
+            myStmt = myConn.createStatement(); // Create a statement
+            myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
 
 
-            // Execute SQL query
-            myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;");
-
-
-            // Process result set
-            while (myRs.next()) {
-                //System.out.println(myRs.getString("FullName") + ", " + myRs.getString("PlateNumber"));
+            while (myRs.next()) { // Process result set
                 columnFullName.add(myRs.getString("FullName"));
                 columnCarPlate.add(myRs.getString("PlateNumber"));
                 columnDate.add(myRs.getString("ExpirationDatestamp"));
                 columnCarModel.add(myRs.getString("CarModel"));
-                //   vehiclesInfDB2.add(new Vehicles(myRs.getString("FullName"), myRs.getString("PlateNumber"), myRs.getString("CarModel"), myRs.getString("ExpirationDatestamp")));
-
             }
-        } catch (Exception exc) {
-            exc.printStackTrace();
-        } finally {
-            if (myRs != null) {
-                myRs.close();
-            }
-
-            if (myStmt != null) {
-                myStmt.close();
-            }
-
-            if (myConn != null) {
-                myConn.close();
-            }
-        }
-    }
-
-
-}
+        } catch (Exception exc) { exc.printStackTrace();
+        } finally { //closes all open interactions with db (connections etc.)
+            if (myRs != null)   { myRs.close();  }
+            if (myStmt != null) { myStmt.close();}
+            if (myConn != null) { myConn.close();}
+        }  }}
