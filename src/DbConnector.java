@@ -17,7 +17,6 @@ public class DbConnector {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
             myStmt = myConn.createStatement(); // Create a statement
             myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
-            System.out.println("executed");
 
 
             while (myRs.next()) { // Process result set

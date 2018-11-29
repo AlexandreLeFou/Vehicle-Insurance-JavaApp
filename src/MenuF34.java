@@ -95,7 +95,7 @@ public class MenuF34 {
                 }
             }
         }
-        
+
         else if(readFrom == 2) { //************************DB*********************//
 
             for (Vehicles V : vehiclesInfDB) {
