@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CSV {
+public class CsvParser {
 
-    // this method will read data from the CSV file and return as a list
+    // this method will read data from the Csv file and return as a list
 
     public static List<String[]> read(String file) {   //where file is the path of csv
 
@@ -16,16 +16,14 @@ public class CSV {
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));
 
-            while ((dataRow = br.readLine()) != null){       //reads only one line
+            while ((dataRow = br.readLine()) != null) {       //reads only one line
                 String[] dataRecords = dataRow.split(",");
                 data.add(dataRecords);
             }
-        } catch (IOException e){
+        } catch (IOException e) {
 
             e.printStackTrace();
         }
         return data;
-
     }
 }
-
