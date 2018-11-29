@@ -2,7 +2,7 @@ import java.io.FileWriter;
 
 public class ExportFile {
     /**
-     * @param fileName:  contains the file name (string) of the file to be processed
+     * @param fileName: contains the file name (string) of the file to be processed
      * @param text:  contains the text that will be written or appended to a file
      */
 
