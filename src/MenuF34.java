@@ -8,24 +8,20 @@ public class MenuF34 {
     //on the plate numbers, ordered in alphanumerical natural order.
     //TIP: try to implement the sorting solution inside the Java application,
     //and avoid a  DB-prepared ordered result.
-    public void platesOrder(List<Vehicles> vehiclesInf, List<Vehicles> vehiclesInfDB, int readFrom, int writeTo) throws Exception {
+    public void platesOrder(List<Vehicles> vehiclesInf, List<Vehicles> vehiclesInfDB,
+                            int readFrom, int writeTo) throws Exception {
 
         ExportFile fileExport = new ExportFile();
         if (writeTo==2){fileExport.writeToCsv("SortedPlateNumbers.csv", "PlateNumber");}
-
-        //************************CsvParser*********************//
-        if (readFrom==1) {
-
+        if (readFrom==1) {//************************CsvParser*********************//
             Collections.sort(vehiclesInf, new Comparator<Vehicles>() {
                 @Override
                 public int compare(Vehicles o1, Vehicles o2) {
-                    return o1.getPlateNumber().compareTo(o2.getPlateNumber());
-                }
-            });
+                    return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
             for (Vehicles V : vehiclesInf) {
 
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
+                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //today's timeStamp
                 String finishDate = V.getFinishDayInsu();  //finishDate = Insurance end date
 
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,14 +37,11 @@ public class MenuF34 {
                 }
             }
         }
-        //************************DB*********************//
-        else if(readFrom==2){
-            Collections.sort(vehiclesInfDB, new Comparator<Vehicles>() {
+        else if(readFrom==2){ //************************DB*********************//
+           Collections.sort(vehiclesInfDB, new Comparator<Vehicles>() {
                 @Override
                 public int compare(Vehicles o1, Vehicles o2) {
-                    return o1.getPlateNumber().compareTo(o2.getPlateNumber());
-                }
-            });
+                    return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
 
             for (Vehicles V : vehiclesInfDB) {
@@ -73,10 +66,12 @@ public class MenuF34 {
     }
 
     //TODO F4
-    public void fineCalcByOwner(List<Vehicles> vehiclesInf,List<Vehicles> vehiclesInfDB, int readFrom, int writeTo, double fine) throws Exception {
+    public void fineCalcByOwner(List<Vehicles> vehiclesInf,List<Vehicles> vehiclesInfDB,
+                                int readFrom, int writeTo, double fine) throws Exception {
 
         ExportFile fileExport = new ExportFile();
-        if (writeTo==2){ fileExport.writeToCsv("fineCalcByOwner.csv", "No match found"); System.out.println("Csv will be generated");}
+        if (writeTo==2){ fileExport.writeToCsv("fineCalcByOwner.csv", "No match found");
+        System.out.println("Csv will be generated");}
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -85,8 +80,7 @@ public class MenuF34 {
         Map<String, Integer> fines = new HashMap<>();
         int i=1;
 
-        //************************CsvParser*********************//
-        if (readFrom==1) {
+        if (readFrom==1) {//************************CsvParser*********************//
             for (Vehicles V : vehiclesInf) {
 
                 String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
@@ -94,8 +88,6 @@ public class MenuF34 {
 
                 if (date1.after(date2)) {
                     if (fines.containsKey(V.getOwnerName())) {
-                        // fines.put(V.getOwnerName(), i++);
-                        // fines.put(fines, fines.get(Integer) + 1);
                         fines.computeIfPresent(V.getOwnerName(), (k, v) -> v + 1);
                     } else {
                         fines.put(V.getOwnerName(), i);
@@ -103,16 +95,16 @@ public class MenuF34 {
                 }
             }
         }
-        //************************DB*********************//
-        else if(readFrom == 2) {
+        
+        else if(readFrom == 2) { //************************DB*********************//
 
             for (Vehicles V : vehiclesInfDB) {
 
                 String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
                 Date date2 = sdf.parse(finishDate);
 
-                // test gia sigkrisi ktl
-                if (date1.after(date2)) {
+
+                if (date1.after(date2)) {// test gia sigkrisi
                     if (fines.containsKey(V.getOwnerName())) {
                         // fines.put(V.getOwnerName(), i++);
                         // fines.put(fines, fines.get(Integer) + 1);
@@ -137,8 +129,4 @@ public class MenuF34 {
                 if (fine!=0){
                     if(c==0){fileExport.writeToCsv("fineCalcByOwner.csv", "CarOwner,FineToPay\n");c++;}
                     fileExport.appendToCsv("fineCalcByOwner.csv", key+ "," + tab*fine+"\n");}
-            }
-        }
-    }
-}
-
+            }  }  }  }
