@@ -17,6 +17,7 @@ public class DbConnector {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
             myStmt = myConn.createStatement(); // Create a statement
             myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
+            System.out.println("executed");
 
 
             while (myRs.next()) { // Process result set
@@ -25,9 +26,13 @@ public class DbConnector {
                 columnDate.add(myRs.getString("ExpirationDatestamp"));
                 columnCarModel.add(myRs.getString("CarModel"));
             }
+        } catch (SQLException e) {
+            System.out.println("Something went wrong please retry and check out the db connection\n");//e.printStackTrace();
+            System.exit(0); //terminate execution
         } catch (Exception exc) { exc.printStackTrace();
         } finally { //closes all open interactions with db (connections etc.)
             if (myRs != null)   { myRs.close();  }
             if (myStmt != null) { myStmt.close();}
             if (myConn != null) { myConn.close();}
         }  }}
+
