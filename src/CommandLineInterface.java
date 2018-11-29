@@ -24,7 +24,6 @@ public class CommandLineInterface{
 
         Scanner keyboard = new Scanner(System.in);
 
-
   do{
       System.out.println("---Select Functionality to perform:\n*1 Vehicle Insurance status\n*2 Forecoming Expiries" +
               "\n*3 Expiries by plate\n*4 Fine Calculation by Owner");
