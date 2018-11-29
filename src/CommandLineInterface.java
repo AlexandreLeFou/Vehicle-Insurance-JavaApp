@@ -19,8 +19,10 @@ public class CommandLineInterface{
 
     for (String[] csvR : dataListEggrafes) {vehiclesInf.add(new Vehicles(csvR[0], csvR[1], csvR[2], csvR[3]));}
 
-    Menu menu = new Menu();
-    Scanner keyboard = new Scanner(System.in);
+    MenuF12 menuF12 = new MenuF12();
+    MenuF34 menuF34 = new MenuF34();
+
+        Scanner keyboard = new Scanner(System.in);
 
 
   do{
@@ -36,12 +38,12 @@ public class CommandLineInterface{
                 do{
                  System.out.println("Provide a license plate with the correct format (Format: ABC-1234):");
                  licensePlate = keyboard.next();
-                }while (!menu.validLicensePlate(licensePlate));
+                }while (!menuF12.validLicensePlate(licensePlate));
                  System.out.println("--Where you want to bring data from\n*1 Csv\n*2 DB");
                  readFrom = keyboard.nextInt();
                  System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                  writeTo = keyboard.nextInt();
-                 try { menu.vehicleInsuranceStatus(vehiclesInf, licensePlate, vehiclesInfDB, readFrom, writeTo);
+                 try { menuF12.vehicleInsuranceStatus(vehiclesInf, licensePlate, vehiclesInfDB, readFrom, writeTo);
                  } catch (Exception e) {e.printStackTrace();  }
                  break;
             case 2:
@@ -51,7 +53,7 @@ public class CommandLineInterface{
                 readFrom = keyboard.nextInt();
                 System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                 writeTo = keyboard.nextInt();
-                try { menu.forecomingExpiries(vehiclesInf, vehiclesInfDB, readFrom, writeTo, days);
+                try { menuF12.forecomingExpiries(vehiclesInf, vehiclesInfDB, readFrom, writeTo, days);
                 } catch (Exception e) { e.printStackTrace();  }
                 break;
             case 3:
@@ -59,7 +61,7 @@ public class CommandLineInterface{
                 readFrom = keyboard.nextInt();
                 System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                 writeTo = keyboard.nextInt();
-                try { menu.platesOrder(vehiclesInf, vehiclesInfDB, readFrom, writeTo);
+                try { menuF34.platesOrder(vehiclesInf, vehiclesInfDB, readFrom, writeTo);
                 } catch (Exception e) { e.printStackTrace();  }
                 break;
             case 4:
@@ -72,7 +74,7 @@ public class CommandLineInterface{
                 //try catch >>
                 try {
                   double fine = keyboard.nextDouble();
-                  try {menu.fineCalcByOwner(vehiclesInf, vehiclesInfDB,readFrom, writeTo, fine);
+                  try {menuF34.fineCalcByOwner(vehiclesInf, vehiclesInfDB,readFrom, writeTo, fine);
                   } catch (Exception e) { e.printStackTrace();  }
                 } catch (InputMismatchException exception) {
                     System.out.println("You have typed something wrongly. \nRe execute and be careful.");
