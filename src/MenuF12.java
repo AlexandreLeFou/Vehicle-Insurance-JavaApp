@@ -1,7 +1,3 @@
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
 import java.util.List;
 
 public class MenuF12 {
@@ -31,7 +27,6 @@ public class MenuF12 {
         if (readFrom == 1) {//*********************FOR CsvParser*******************\\
             for (Vehicles V : vehiclesInf) {
                     if (V.getPlateNumber().equals(licensePlate)) {    // sigkrisi Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                    System.out.println("wpa-->"+V.getFinishDayInsu());
                     Dates dateFeature = new Dates();
                     if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
                         if (writeTo == 1) { System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
@@ -71,22 +66,11 @@ public class MenuF12 {
             fileExport.writeToCsv("forecomingExpiries.csv", "No match found");
             System.out.println("CsvParser file generated");
         } //if selected write to csv->create empty file with no match entry.If we find something overwrite this value...
-
         if (readFrom == 1) { //************************CsvParser*********************//
             for (Vehicles V : vehiclesInf) {
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
-                LocalDate ldA = LocalDate.parse(timeStamp); // ldA current Date
-                String finishDate = V.getFinishDayInsu();  //finishDate Last insurance day
-                LocalDate ldB = LocalDate.parse(finishDate); //finishDate Last insurance day convert to ldB
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date1 = sdf.parse(timeStamp); //current Date
-                Date date2 = sdf.parse(finishDate); //last insurance date
-                long daysBetween = ChronoUnit.DAYS.between(ldA, ldB);
-
-                if (date2.before(date1)) {  //checks if finishInsuranceDate is before current Date
-                } else if (date2.after(date1)) {
-                    if (daysBetween < days) {
+                if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
+                } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
+                    if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
                         if (writeTo == 1) {  System.out.println("The car's insurance with registration plate" +
                                     " number: " + V.getPlateNumber() + " is about to expire.");
                         } else if (writeTo == 2) {
@@ -99,21 +83,10 @@ public class MenuF12 {
                         }  }  }  }  }
 
         else if (readFrom == 2) {  //************************DB*********************//
-
             for (Vehicles V : vehiclesInfDB) {
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //today's timeStamp
-                LocalDate ldA = LocalDate.parse(timeStamp); // ldA current Date
-                String finishDate = V.getFinishDayInsu();  //finishDate Last insurance day
-                LocalDate ldB = LocalDate.parse(finishDate); //finishDate Last insurance day convert to ldB
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date1 = sdf.parse(timeStamp);
-                Date date2 = sdf.parse(finishDate);
-                long daysBetween = ChronoUnit.DAYS.between(ldA, ldB);
-
-                if (date2.before(date1)) { //checks if finishInsuranceDate is before today's Date
-                } else if (date2.after(date1)) {
-                    if (daysBetween < days) {
+                if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
+                } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
+                    if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
                         if (writeTo == 1) {
                             System.out.println("The car's insurance with registration plate number: "
                                     + V.getPlateNumber() + " is about to expire.");
