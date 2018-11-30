@@ -1,10 +1,13 @@
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
 public class MenuF12 {
     private String licensePlate; //arxikh pinakida tou xrhsth
+    Dates dateFeature;
+
 
     public boolean validLicensePlate(String licensePlate) {
 
@@ -25,20 +28,16 @@ public class MenuF12 {
             System.out.println("CsvParser file generated");
         } //if selected write to csv->create empty file with no match entry.If we find something overwrite this value...
 
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = sdf.parse(timeStamp);
-
         if (readFrom == 1) {//*********************FOR CsvParser*******************\\
             for (Vehicles V : vehiclesInf) {
-                String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                Date date2 = sdf.parse(finishDate);
-                if (V.getPlateNumber().equals(licensePlate)) {    // test gia sigkrisi
-                    if (date2.after(date1)) { readFrom++;
+                    if (V.getPlateNumber().equals(licensePlate)) {    // sigkrisi Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
+                    System.out.println("wpa-->"+V.getFinishDayInsu());
+                    Dates dateFeature = new Dates();
+                    if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
                         if (writeTo == 1) { System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
-                        }
+                        }//if(V.getFinishDayInsu() instanceof String){System.out.println("we got a string");}
                         else {fileExport.writeToCsv("vehicleInsuranceStatus.csv",
-                                ("Your insurance ends at: " + finishDate));
+                                ("Your insurance ends at: " + V.getFinishDayInsu()));
                         }
                     }
                 }
@@ -47,16 +46,12 @@ public class MenuF12 {
             if (readFrom == 1) {
                 System.out.println("No match found");
             }
-        } else if (readFrom == 2) {//db
+        } else if (readFrom == 2) {// *********************FOR DB*******************\\
 
-            // *********************FOR DB*******************\\
             for (Vehicles V : vehiclesInfDB) {
-
-                String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                Date date2 = sdf.parse(finishDate);
                 if (V.getPlateNumber().equals(licensePlate)) {    // test gia sigkrisi ktl
-
-                    if (date2.after(date1)) {
+                    Dates dateFeature = new Dates();
+                    if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                         readFrom++;
                         if (writeTo == 1) {
                             System.out.println("Your insurance ends at: " + V.getFinishDayInsu());

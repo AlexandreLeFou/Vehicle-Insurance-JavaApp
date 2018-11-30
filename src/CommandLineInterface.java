@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class CommandLineInterface{
 
     public void userPromt(String file, DbConnector myDatabase) {
-
     String licensePlate;
     int readFrom,writeTo,choice=0;
     List<Vehicles> vehiclesInfDB = new LinkedList<Vehicles>();
