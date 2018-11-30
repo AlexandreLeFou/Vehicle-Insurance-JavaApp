@@ -74,9 +74,7 @@ public class MenuF34 {
                 }
             }
         }
-
         else if(readFrom == 2) { //************************DB*********************//
-
             for (Vehicles V : vehiclesInfDB) {
                 Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
@@ -88,7 +86,6 @@ public class MenuF34 {
                 }
             }
         }
-
         int c=0; //counterfor write=2 and fine=0 case
         for ( Map.Entry<String, Integer> entry : fines.entrySet()) {
             String key = entry.getKey();
