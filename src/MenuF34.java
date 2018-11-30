@@ -2,6 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MenuF34 {
+    Dates dateFeature = new Dates();
 
     //TODO F3 SORT F3: Sorting uninsured vehicles based on plates-number
     //The application, if requested, can provide the uninsured vehicles based
@@ -20,15 +21,7 @@ public class MenuF34 {
                     return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
             for (Vehicles V : vehiclesInf) {
-
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //today's timeStamp
-                String finishDate = V.getFinishDayInsu();  //finishDate = Insurance end date
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date1 = sdf.parse(timeStamp);
-                Date date2 = sdf.parse(finishDate);
-
-                if (date2.before(date1)) {
+                if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");
                     }else if (writeTo==2){
@@ -45,15 +38,7 @@ public class MenuF34 {
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
 
             for (Vehicles V : vehiclesInfDB) {
-
-                String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp current date
-                String finishDate = V.getFinishDayInsu();  //finishDate = Insurance end date
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                Date date1 = sdf.parse(timeStamp);
-                Date date2 = sdf.parse(finishDate);
-
-                if (date2.before(date1)) {
+                if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");
                     }

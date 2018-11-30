@@ -2,7 +2,7 @@ import java.util.List;
 
 public class MenuF12 {
     private String licensePlate; //arxikh pinakida tou xrhsth
-    Dates dateFeature;
+    Dates dateFeature = new Dates();
 
 
     public boolean validLicensePlate(String licensePlate) {
@@ -27,8 +27,7 @@ public class MenuF12 {
         if (readFrom == 1) {//*********************FOR CsvParser*******************\\
             for (Vehicles V : vehiclesInf) {
                     if (V.getPlateNumber().equals(licensePlate)) {    // sigkrisi Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                    Dates dateFeature = new Dates();
-                    if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
+                        if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
                         if (writeTo == 1) { System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
                         }//if(V.getFinishDayInsu() instanceof String){System.out.println("we got a string");}
                         else {fileExport.writeToCsv("vehicleInsuranceStatus.csv",
@@ -45,7 +44,6 @@ public class MenuF12 {
 
             for (Vehicles V : vehiclesInfDB) {
                 if (V.getPlateNumber().equals(licensePlate)) {    // test gia sigkrisi ktl
-                    Dates dateFeature = new Dates();
                     if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                         readFrom++;
                         if (writeTo == 1) {
