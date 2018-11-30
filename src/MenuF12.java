@@ -69,6 +69,7 @@ public class MenuF12 {
 
         if (readFrom == 1) { //************************CsvParser*********************//
             for (Vehicles V : vehiclesInf) {
+                Dates dateFeature = new Dates();
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
                 } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
                     if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
@@ -86,6 +87,7 @@ public class MenuF12 {
         else if (readFrom == 2) {  //************************DB*********************//
 
             for (Vehicles V : vehiclesInfDB) {
+                Dates dateFeature = new Dates();
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
                 } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
                     if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
