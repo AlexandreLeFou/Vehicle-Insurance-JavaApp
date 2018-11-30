@@ -1,4 +1,3 @@
-import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MenuF34 {
@@ -60,20 +59,13 @@ public class MenuF34 {
         if (writeTo==2){ fileExport.writeToCsv("fineCalcByOwner.csv", "No match found");
         System.out.println("Csv will be generated");}
 
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
-        Date date1 = sdf.parse(timeStamp);
         Map<String, Integer> fines = new HashMap<>();
         int i=1;
 
         if (readFrom==1) {//************************CsvParser*********************//
             for (Vehicles V : vehiclesInf) {
-
-                String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                Date date2 = sdf.parse(finishDate);
-
-                if (date1.after(date2)) {
+                Dates dateFeature = new Dates();
+                if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (fines.containsKey(V.getOwnerName())) {
                         fines.computeIfPresent(V.getOwnerName(), (k, v) -> v + 1);
                     } else {
@@ -86,15 +78,9 @@ public class MenuF34 {
         else if(readFrom == 2) { //************************DB*********************//
 
             for (Vehicles V : vehiclesInfDB) {
-
-                String finishDate = V.getFinishDayInsu();  //x Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                Date date2 = sdf.parse(finishDate);
-
-
-                if (date1.after(date2)) {// test gia sigkrisi
+                Dates dateFeature = new Dates();
+                if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (fines.containsKey(V.getOwnerName())) {
-                        // fines.put(V.getOwnerName(), i++);
-                        // fines.put(fines, fines.get(Integer) + 1);
                         fines.computeIfPresent(V.getOwnerName(), (k, v) -> v + 1);
                     } else {
                         fines.put(V.getOwnerName(), i);
