@@ -2,7 +2,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class MenuF34 {
-    Dates dateFeature = new Dates();
+    Dates dateFeature;
 
     //TODO F3 SORT F3: Sorting uninsured vehicles based on plates-number
     //The application, if requested, can provide the uninsured vehicles based
@@ -21,6 +21,7 @@ public class MenuF34 {
                     return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
             for (Vehicles V : vehiclesInf) {
+                Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");
@@ -38,6 +39,7 @@ public class MenuF34 {
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
 
             for (Vehicles V : vehiclesInfDB) {
+                Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");

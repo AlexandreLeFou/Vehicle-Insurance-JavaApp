@@ -2,7 +2,7 @@ import java.util.List;
 
 public class MenuF12 {
     private String licensePlate; //arxikh pinakida tou xrhsth
-    Dates dateFeature = new Dates();
+    Dates dateFeature;
 
 
     public boolean validLicensePlate(String licensePlate) {
@@ -27,7 +27,8 @@ public class MenuF12 {
         if (readFrom == 1) {//*********************FOR CsvParser*******************\\
             for (Vehicles V : vehiclesInf) {
                     if (V.getPlateNumber().equals(licensePlate)) {    // sigkrisi Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
-                        if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
+                    Dates dateFeature = new Dates();
+                    if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
                         if (writeTo == 1) { System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
                         }//if(V.getFinishDayInsu() instanceof String){System.out.println("we got a string");}
                         else {fileExport.writeToCsv("vehicleInsuranceStatus.csv",
@@ -44,6 +45,7 @@ public class MenuF12 {
 
             for (Vehicles V : vehiclesInfDB) {
                 if (V.getPlateNumber().equals(licensePlate)) {    // test gia sigkrisi ktl
+                    Dates dateFeature = new Dates();
                     if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                         readFrom++;
                         if (writeTo == 1) {
@@ -64,6 +66,7 @@ public class MenuF12 {
             fileExport.writeToCsv("forecomingExpiries.csv", "No match found");
             System.out.println("CsvParser file generated");
         } //if selected write to csv->create empty file with no match entry.If we find something overwrite this value...
+
         if (readFrom == 1) { //************************CsvParser*********************//
             for (Vehicles V : vehiclesInf) {
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
@@ -81,6 +84,7 @@ public class MenuF12 {
                         }  }  }  }  }
 
         else if (readFrom == 2) {  //************************DB*********************//
+
             for (Vehicles V : vehiclesInfDB) {
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
                 } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
