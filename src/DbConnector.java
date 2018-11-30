@@ -8,16 +8,16 @@ public class DbConnector {
     ArrayList<String>  columnCarModel = new ArrayList<String>();
 
     public void dbcall() throws SQLException {
-        Connection myConn = null;
-        Statement myStmt = null;
-        ResultSet myRs = null;
+        //Connection myConn ;
+     //   Statement myStmt ;
+      //  ResultSet myRs ;
 
-        try {
+        try(
             // connect to database- change password/username as per your pc
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
-            myStmt = myConn.createStatement(); // Create a statement
-            myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
-
+            Connection  myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
+            Statement myStmt = myConn.createStatement(); // Create a statement
+            ResultSet myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
+            ){
 
             while (myRs.next()) { // Process result set
                 columnFullName.add(myRs.getString("FullName"));
@@ -29,9 +29,5 @@ public class DbConnector {
             System.out.println("Something went wrong please retry and check out the db connection\n");//e.printStackTrace();
             System.exit(0); //terminate execution
         } catch (Exception exc) { exc.printStackTrace();
-        } finally { //closes all open interactions with db (connections etc.)
-            if (myRs != null)   { myRs.close();  }
-            if (myStmt != null) { myStmt.close();}
-            if (myConn != null) { myConn.close();}
         }  }}
 
