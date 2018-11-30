@@ -11,7 +11,6 @@ public class CommandLineInterface{
     List<Vehicles> vehiclesInfDB = new LinkedList<Vehicles>();
     List<String[]> dataListEggrafes = CsvParser.read(file);
     List<Vehicles> vehiclesInf = new LinkedList<Vehicles>();
-
     for (int i = 0; i < myDatabase.columnFullName.size(); i++) {
       vehiclesInfDB.add(new Vehicles(myDatabase.columnFullName.get(i), myDatabase.columnCarPlate.get(i),
         myDatabase.columnCarModel.get(i), myDatabase.columnDate.get(i)));  }

@@ -8,9 +8,6 @@ public class DbConnector {
     ArrayList<String>  columnCarModel = new ArrayList<String>();
 
     public void dbcall() throws SQLException {
-        //Connection myConn ;
-     //   Statement myStmt ;
-      //  ResultSet myRs ;
 
         try(
             // connect to database- change password/username as per your pc
