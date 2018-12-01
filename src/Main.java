@@ -1,16 +1,9 @@
 import java.sql.SQLException;
-import java.util.InputMismatchException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
-
 
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
-
-        List<Vehicles> vehiclesInfDB = new LinkedList<Vehicles>();
-
+        CommandLineInterface  commandLineGui = new CommandLineInterface();
         DbConnector myDatabase = new DbConnector();
         try {
             myDatabase.dbcall();
@@ -119,3 +112,12 @@ public class Main {
 
 }
 
+
+        try { myDatabase.dbcall(); //start db connection
+        } catch (SQLException e) { //e.printStackTrace();
+           System.out.println("Something went wrong please retry and check out the db connection\n");
+        }
+                String file = "example.csv"; //file directory:pwd
+        commandLineGui.userPromt(file,myDatabase);
+    }
+}
