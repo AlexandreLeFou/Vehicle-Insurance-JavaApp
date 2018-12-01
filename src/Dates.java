@@ -8,8 +8,9 @@ public class Dates {
 
     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    Date date1;
+    private Date date1;
 
+    // could be static
     public Dates() throws ParseException {
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
@@ -23,12 +24,11 @@ public class Dates {
         Date date2 = sdf.parse(lastDay);
         if (date2.after(date1)) {
             return true;
-        }
-        else
-        return false;
+        } else
+            return false;
     }
 
-    public long daysBetween (String lastDay) throws ParseException {
+    public long daysBetween(String lastDay) throws ParseException {
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(new Date()); //timeStamp h shmerini imerominia
         LocalDate ldA = LocalDate.parse(timeStamp); // ldA current Date
