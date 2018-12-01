@@ -91,7 +91,7 @@ public class MenuF12 {
                 } else if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
                     if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
                         if (writeTo == 1) {
-                            System.out.println("The car's insurance with registration plate number: "
+                            System.out.println("The car's insurance with registration plate number : "
                                     + V.getPlateNumber() + " is about to expire.");
                         } else if (writeTo == 2) {
                             if (readFrom == 2) {
