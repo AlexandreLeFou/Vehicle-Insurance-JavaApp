@@ -11,7 +11,7 @@ public class DbConnector {
 
         try(
             // connect to database- change password/username as per your pc
-            Connection  myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "aekara21");
+            Connection  myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306?useSSL=false", "root", "bukomk5t1");
             Statement myStmt = myConn.createStatement(); // Create a statement
             ResultSet myRs = myStmt.executeQuery("SELECT * FROM project1.car_plate_data;"); // Execute SQL query
             ){
@@ -23,7 +23,7 @@ public class DbConnector {
                 columnCarModel.add(myRs.getString("CarModel"));
             }
         } catch (SQLException e) {
-            System.out.println("Something went wrong please retry and check out the db connection\n");//e.printStackTrace();
+            System.out.println("Soomething went wrong please retry and check out the db connection\n");//e.printStackTrace();
             System.exit(0); //terminate execution
         } catch (Exception exc) { exc.printStackTrace();
         }  }}
