@@ -87,8 +87,8 @@ public class MenuF12 {
 
             for (Vehicle V : vehiclesInfDB) {
                 Dates dateFeature = new Dates();
-                if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
-                } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
+                if ((!dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
+                } else if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
                     if (dateFeature.daysBetween(V.getFinishDayInsu()) < days) {
                         if (writeTo == 1) {
                             System.out.println("The car's insurance with registration plate number: "
