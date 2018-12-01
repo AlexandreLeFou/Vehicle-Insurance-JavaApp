@@ -66,7 +66,7 @@ public class CommandLineInterface {
                 case 3:
                     System.out.println("--        Where you want to bring data from\n*1 Csv\n*2 DB");
                     readFrom = keyboard.nextInt();
-                    System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
+                    System.out.println("--Wheremmkmkmkmokkmmkmkioooppp do you want to write the data\n*1 Console\n*2 Csv");
                     writeTo = keyboard.nextInt();
                     try {
                         menuF34.platesOrder(vehiclesInf, vehiclesInfDB, readFrom, writeTo);
