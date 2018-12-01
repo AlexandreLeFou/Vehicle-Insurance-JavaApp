@@ -64,7 +64,7 @@ public class CommandLineInterface {
                     }
                     break;
                 case 3:
-                    System.out.println("--Where you want to bring data from\n*1 Csv\n*2 DB");
+                    System.out.println("--        Where you want to bring data from\n*1 Csv\n*2 DB");
                     readFrom = keyboard.nextInt();
                     System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                     writeTo = keyboard.nextInt();
@@ -94,7 +94,7 @@ public class CommandLineInterface {
                     }
                     break;
                 default:
-                    System.out.println("Please input a valid number");
+                    System.out.println("Please      input a valid number");
                     break;
             }
         } while ((choice != 1) && (choice != 2) && (choice != 3) && (choice != 4));
