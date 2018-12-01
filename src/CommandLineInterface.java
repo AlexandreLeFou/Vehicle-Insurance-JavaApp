@@ -8,14 +8,14 @@ public class CommandLineInterface{
     public void userPromt(String file, DbConnector myDatabase) {
     String licensePlate;
     int readFrom,writeTo,choice=0;
-    List<Vehicles> vehiclesInfDB = new LinkedList<Vehicles>();
+    List<Vehicle> vehiclesInfDB = new LinkedList<Vehicle>();
     List<String[]> dataListEggrafes = CsvParser.read(file);
-    List<Vehicles> vehiclesInf = new LinkedList<Vehicles>();
+    List<Vehicle> vehiclesInf = new LinkedList<Vehicle>();
     for (int i = 0; i < myDatabase.columnFullName.size(); i++) {
-      vehiclesInfDB.add(new Vehicles(myDatabase.columnFullName.get(i), myDatabase.columnCarPlate.get(i),
+      vehiclesInfDB.add(new Vehicle(myDatabase.columnFullName.get(i), myDatabase.columnCarPlate.get(i),
         myDatabase.columnCarModel.get(i), myDatabase.columnDate.get(i)));  }
 
-    for (String[] csvR : dataListEggrafes) {vehiclesInf.add(new Vehicles(csvR[0], csvR[1], csvR[2], csvR[3]));}
+    for (String[] csvR : dataListEggrafes) {vehiclesInf.add(new Vehicle(csvR[0], csvR[1], csvR[2], csvR[3]));}
 
     MenuF12 menuF12 = new MenuF12();
     MenuF34 menuF34 = new MenuF34();
@@ -67,7 +67,7 @@ public class CommandLineInterface{
                 System.out.println("--Where do you want to write the data\n*1 Console\n*2 Csv");
                 writeTo = keyboard.nextInt();
                 System.out.println("Type the amount of the fine(for non integer values please separate" +
-                        " decimal-floating with a DOT" +" (e.g. 12.2 or 344.532 or etc.)");
+                        " decimal-floating with a COMMA" +" (e.g. 12,2 or 344,532 or etc.)");
                 try {
                   double fine = keyboard.nextDouble();
                   try {menuF34.fineCalcByOwner(vehiclesInf, vehiclesInfDB,readFrom, writeTo, fine);

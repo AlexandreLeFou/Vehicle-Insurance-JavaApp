@@ -16,23 +16,23 @@ public class MenuF12 {
         }  }
 
     //TODO F1
-    public void vehicleInsuranceStatus(List<Vehicles> vehiclesInf, String licensePlate, List<Vehicles> vehiclesInfDB, int readFrom, int writeTo) throws Exception {
+    public void vehicleInsuranceStatus(List<Vehicle> vehicleInf, String licensePlate, List<Vehicle> vehiclesInfDB, int readFrom, int writeTo) throws Exception {
 
         ExportFile fileExport = new ExportFile();
         if (writeTo == 2) {
             fileExport.writeToCsv("vehicleInsuranceStatus.csv", "No match found");
-            System.out.println("CsvParser file generated");
+            System.out.println("Csv file generated");
         } //if selected write to csv->create empty file with no match entry.If we find something overwrite this value...
 
         if (readFrom == 1) {//*********************FOR CsvParser*******************\\
-            for (Vehicles V : vehiclesInf) {
+            for (Vehicle V : vehicleInf) {
                     if (V.getPlateNumber().equals(licensePlate)) {    // sigkrisi Η ΗΜΕΡΟΜΗΝΙΑ Π ΤΕΛΕΙΩΝΕΙ Η ΑΣΦΑΛΕΙΑ
                     Dates dateFeature = new Dates();
                     if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) { readFrom++;
                         if (writeTo == 1) { System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
                         }//if(V.getFinishDayInsu() instanceof String){System.out.println("we got a string");}
                         else {fileExport.writeToCsv("vehicleInsuranceStatus.csv",
-                                ("Your insurance ends at: " + V.getFinishDayInsu()));
+                                ( V.getFinishDayInsu()));
                         }
                     }
                 }
@@ -43,7 +43,7 @@ public class MenuF12 {
             }
         } else if (readFrom == 2) {// *********************FOR DB*******************\\
 
-            for (Vehicles V : vehiclesInfDB) {
+            for (Vehicle V : vehiclesInfDB) {
                 if (V.getPlateNumber().equals(licensePlate)) {    // test gia sigkrisi ktl
                     Dates dateFeature = new Dates();
                     if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
@@ -51,7 +51,7 @@ public class MenuF12 {
                         if (writeTo == 1) {
                             System.out.println("Your insurance ends at: " + V.getFinishDayInsu());
                         } else {
-                            fileExport.writeToCsv("vehicleInsuranceStatus.csv", "Your insurance ends at: " + V.getFinishDayInsu());
+                            fileExport.writeToCsv("vehicleInsuranceStatus.csv", V.getFinishDayInsu());
                         }
                     }
                 }
@@ -59,16 +59,16 @@ public class MenuF12 {
             if (readFrom == 2) { System.out.println("No match found");  }  }  }
 
     //TODO F2 user input to days q variable dld
-    public void forecomingExpiries(List<Vehicles> vehiclesInf, List<Vehicles> vehiclesInfDB, int readFrom, int writeTo, int days) throws Exception {
+    public void forecomingExpiries(List<Vehicle> vehiclesInf, List<Vehicle> vehiclesInfDB, int readFrom, int writeTo, int days) throws Exception {
 
         ExportFile fileExport = new ExportFile();
         if (writeTo == 2) {
             fileExport.writeToCsv("forecomingExpiries.csv", "No match found");
-            System.out.println("CsvParser file generated");
+            System.out.println("Csv file generated");
         } //if selected write to csv->create empty file with no match entry.If we find something overwrite this value...
 
         if (readFrom == 1) { //************************CsvParser*********************//
-            for (Vehicles V : vehiclesInf) {
+            for (Vehicle V : vehiclesInf) {
                 Dates dateFeature = new Dates();
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
                 } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
@@ -78,15 +78,14 @@ public class MenuF12 {
                         } else if (writeTo == 2) {
                             if (readFrom == 1) {
                                 fileExport.writeToCsv("forecomingExpiries.csv",
-                                        "The car's insurance with registration plate" +
-                                                " number: " + V.getPlateNumber() + " is about to expire.");
+                                        "PlateNumber,\n" + V.getPlateNumber());
                                 readFrom++;
-                            }fileExport.appendToCsv("forecomingExpiries.csv", "," + V.getPlateNumber());
+                            }fileExport.appendToCsv("forecomingExpiries.csv", ",\n" + V.getPlateNumber());
                         }  }  }  }  }
 
         else if (readFrom == 2) {  //************************DB*********************//
 
-            for (Vehicles V : vehiclesInfDB) {
+            for (Vehicle V : vehiclesInfDB) {
                 Dates dateFeature = new Dates();
                 if ((dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date
                 } else if (!(dateFeature.Date2afterDate1(V.getFinishDayInsu()))) {  //checks if finishInsuranceDate is before current Date) {
@@ -97,8 +96,8 @@ public class MenuF12 {
                         } else if (writeTo == 2) {
                             if (readFrom == 2) {
                                 fileExport.writeToCsv("forecomingExpiries.csv",
-                                        "PlateNumber" + V.getPlateNumber());
+                                        "PlateNumber,\n" + V.getPlateNumber());
                                 readFrom++;
                             }
-                            fileExport.appendToCsv("forecomingExpiries.csv", "," + V.getPlateNumber());
+                            fileExport.appendToCsv("forecomingExpiries.csv", ",\n" + V.getPlateNumber());
                         }  }  }  }  }  }  }

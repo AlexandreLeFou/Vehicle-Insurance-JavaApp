@@ -8,43 +8,43 @@ public class MenuF34 {
     //on the plate numbers, ordered in alphanumerical natural order.
     //TIP: try to implement the sorting solution inside the Java application,
     //and avoid a  DB-prepared ordered result.
-    public void platesOrder(List<Vehicles> vehiclesInf, List<Vehicles> vehiclesInfDB,
+    public void platesOrder(List<Vehicle> vehiclesInf, List<Vehicle> vehiclesInfDB,
                             int readFrom, int writeTo) throws Exception {
 
         ExportFile fileExport = new ExportFile();
         if (writeTo==2){fileExport.writeToCsv("SortedPlateNumbers.csv", "PlateNumber");}
         if (readFrom==1) {//************************CsvParser*********************//
-            Collections.sort(vehiclesInf, new Comparator<Vehicles>() {
+            Collections.sort(vehiclesInf, new Comparator<Vehicle>() {
                 @Override
-                public int compare(Vehicles o1, Vehicles o2) {
+                public int compare(Vehicle o1, Vehicle o2) {
                     return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
-            for (Vehicles V : vehiclesInf) {
+            for (Vehicle V : vehiclesInf) {
                 Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");
                     }else if (writeTo==2){
-                        fileExport.appendToCsv("SortedPlateNumbers.csv", ","+V.getPlateNumber());
+                        fileExport.appendToCsv("SortedPlateNumbers.csv", ",\n"+V.getPlateNumber());
                     }
                 }
             }
         }
         else if(readFrom==2){ //************************DB*********************//
-           Collections.sort(vehiclesInfDB, new Comparator<Vehicles>() {
+           Collections.sort(vehiclesInfDB, new Comparator<Vehicle>() {
                 @Override
-                public int compare(Vehicles o1, Vehicles o2) {
+                public int compare(Vehicle o1, Vehicle o2) {
                     return o1.getPlateNumber().compareTo(o2.getPlateNumber());  }  });
             System.out.print("The car's plates registration sorting order selected is:\n\t\t\t  [Alpha-Numerical]");
 
-            for (Vehicles V : vehiclesInfDB) {
+            for (Vehicle V : vehiclesInfDB) {
                 Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (writeTo==1) {
                         System.out.print("\n\t\t\t\t "+"|"+V.getPlateNumber()+"|");
                     }
                     else if (writeTo==2){
-                        fileExport.appendToCsv("SortedPlateNumbers.csv", ","+V.getPlateNumber());
+                        fileExport.appendToCsv("SortedPlateNumbers.csv", ",\n"+V.getPlateNumber());
                     }
                 }
             }
@@ -52,7 +52,7 @@ public class MenuF34 {
     }
 
     //TODO F4
-    public void fineCalcByOwner(List<Vehicles> vehiclesInf,List<Vehicles> vehiclesInfDB,
+    public void fineCalcByOwner(List<Vehicle> vehiclesInf,List<Vehicle> vehiclesInfDB,
                                 int readFrom, int writeTo, double fine) throws Exception {
 
         ExportFile fileExport = new ExportFile();
@@ -63,7 +63,7 @@ public class MenuF34 {
         int i=1;
 
         if (readFrom==1) {//************************CsvParser*********************//
-            for (Vehicles V : vehiclesInf) {
+            for (Vehicle V : vehiclesInf) {
                 Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (fines.containsKey(V.getOwnerName())) {
@@ -75,7 +75,7 @@ public class MenuF34 {
             }
         }
         else if(readFrom == 2) { //************************DB*********************//
-            for (Vehicles V : vehiclesInfDB) {
+            for (Vehicle V : vehiclesInfDB) {
                 Dates dateFeature = new Dates();
                 if (dateFeature.Date2afterDate1(V.getFinishDayInsu())) {
                     if (fines.containsKey(V.getOwnerName())) {
