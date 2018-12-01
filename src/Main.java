@@ -18,6 +18,7 @@ public class Main {
 
         } catch (SQLException e) {
             System.out.println("Something went wrong please retry and check out the db and/or csv file");
+            System.out.println("ALEX KALISPERA");
             e.printStackTrace();
         }
         int i = 0;
