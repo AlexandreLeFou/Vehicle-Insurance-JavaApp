@@ -1,7 +1,7 @@
 ### Code.Hub Project 1
 
 
-**Overview:** This repository contains the final outcome of our team project, regarding the 1st Java assignment of [Code.Hub's, Java | Spring bootcamp scholarship by Piraeus Bank](https://www.projectfuture.gr) .
+**Overview:** This repository contains the final outcome of our team project, regarding the 1st Java assignment of [Code.Hub's, Java | Spring bootcamp scholarship by Piraeus Bank] (https://www.projectfuture.gr) .
 
 The purpose of this exercise was to confirm, justify and consolidate all the learning outcomes, obtained during the Java Section of the course, i.e. Algorithm Design, Java Language Fundamentals and DB & SQL Usage.
  
